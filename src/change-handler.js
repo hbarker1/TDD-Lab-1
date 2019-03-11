@@ -7,16 +7,11 @@
  */
 'use strict';
 
-module.exports = {
-    ChangeHandler
-  };
-
-
 class ChangeHandler {
     
     constructor(amountDue) {
         this.amountDue = amountDue;
-        this.cashTendered = 0;
+        this.cashTendered = cashTendered;
     }
 
     /**
@@ -26,17 +21,33 @@ class ChangeHandler {
 
 
     insertCoin(type) {
-        const type = ['quarter', 'dime', 'nickel', 'penny']
-        return this.cashTendered + 1;
+    let ChangeHandler = new ChangeHandler(0,0);
+        if (type === 'quarter') {
+            return this.cashTendered + 25;
+        } else if (type === 'dime') {
+            return this.cashTendered + 10;
+
+        } else if (type === 'nickel') {
+            return this.cashTendered + 5;
+
+        } else if (type === 'penny') {
+            return this.cashTendered + 1;
+
+        }
+        
 
     }
     /**
      * Returns true if enough coins have been inserted to at least meet the amountDue
      */
     isPaymentSufficient() {
-        return this.amountDue = true;
-
+        if(this.cashTendered >= this.amountDue){
+            return true;
+        }else{
+            return false;
+        }
     }
+
 
     giveChange() {
         // TODO return the correct change in the following format...
@@ -45,6 +56,6 @@ class ChangeHandler {
             dimes: 10,
             nickels: 5,
             pennies: 1
-        }
+        };
     }
 }
